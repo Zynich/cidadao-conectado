@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Login{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="login-container d-flex justify-content-center align-items-center vh-100">
+        <div class="login-box bg-white p-2 rounded">
+            <img src="{{ asset('images/logo_prefeitura.png') }}" alt="Logo Prefeitura" class="d-block mx-auto mb-3">
+
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+            <div class="form-group">
+            <form method="post" action="{{ path('app_login') }}">
+                
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="_username" class="form-control mb-1" placeholder="Login" required autofocus value="">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="_password" class="form-control mt-1 mb-1" placeholder="Senha" required value="">
+                    {# CSRF token #}
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                <button type="submit" class="btn btn-primary w-100 mt-2">Login</button>
+            </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
