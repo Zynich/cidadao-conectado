@@ -1,0 +1,39 @@
+.filter-box {
+    display: none;
+    position: relative;
+    background-color: #f2f2f2;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 15px;
+}
+
+.filter-content {
+    padding: 10px;
+}
+
+.btn-filter.active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.filter-controls {
+    margin-bottom: 10px;
+}
+
+.filter-controls .form-control {
+    display: inline-block;
+    margin-right: 5px;
+    width: auto;
+}
+
+.occurrence-controls select.form-control {
+    margin-right: 10px;
+    background-color: #FFF;
+}
+
+.pointer {
+    cursor: pointer;
+}
+

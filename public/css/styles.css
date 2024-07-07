@@ -1,0 +1,30 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+.logo {
+    max-width: 200px; 
+    height: auto; 
+    margin: 20px 0;
+}
+.navbar {
+    background-color: #343a40;
+}
+.navbar-nav .nav-item .nav-link {
+    color: #ffffff;
+}
+.navbar-nav .nav-item .nav-link:hover {
+    color: #adb5bd;
+}
+.dropdown-menu {
+    background-color: #343a40;
+}
+.dropdown-menu .dropdown-item {
+    color: #ffffff;
+}
+.dropdown-menu .dropdown-item:hover {
+    background-color: #495057;
+}
+.content {
+    padding: 20px;
+}

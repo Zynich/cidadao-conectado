@@ -11,22 +11,51 @@
     <div class="login-container d-flex justify-content-center align-items-center vh-100">
         <div class="login-box bg-white p-2 rounded">
             <img src="{{ asset('images/logo_prefeitura.png') }}" alt="Logo Prefeitura" class="d-block mx-auto mb-3">
-
             {% if error %}
-                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                <div class="alert alert-danger">{{ error.messageKey|trans({}, 'security') }}</div>
+            {% endif %}
+            {% if app.user %}
+                <div class="mb-1">
+                    You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                </div>
             {% endif %}
             <div class="form-group">
-            <form method="post" action="{{ path('app_login') }}">
-                
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="_username" class="form-control mb-1" placeholder="Login" required autofocus value="">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="_password" class="form-control mt-1 mb-1" placeholder="Senha" required value="">
+                <form method="post" action="{{ path('app_login') }}">
+                    <input type="email" value="{{ last_username }}" placeholder="Login" name="email" id="inputEmail" class="form-control md-2" autocomplete="email" required autofocus>
+                    <input type="password" name="password" id="inputPassword" placeholder="Senha" class="form-control mt-2" autocomplete="current-password" required>
                     {# CSRF token #}
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-                <button type="submit" class="btn btn-primary w-100 mt-2">Login</button>
-            </form>
+                    <button type="submit" class="btn btn-primary w-100 mt-2">Login</button>
+                </form>
             </div>
         </div>
     </div>
 {% endblock %}
+
+{# {% block body %}
+<form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <label for="inputEmail">Email</label>
+    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+    <label for="inputPassword">Password</label>
+    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}"
+    >
+
+    <button class="btn btn-lg btn-primary" type="submit">
+        Sign in
+    </button>
+</form>
+{% endblock %} #}

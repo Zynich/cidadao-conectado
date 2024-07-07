@@ -1,4 +1,5 @@
 <?php
+// src/Controller/DefaultController.php
 
 namespace App\Controller;
 
@@ -8,11 +9,19 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends AbstractController
 {
-    #[Route('/default', name: 'app_default')]
+    /**
+     * @Route("/", name="app_home")
+     */
     public function index(): Response
     {
-        return $this->render('default/index.html.twig', [
-            'controller_name' => 'DefaultController',
-        ]);
+        return $this->redirectToRoute('occurrences_dashboard');
+    }
+
+    /**
+     * @Route("/home", name="app_home_redirect")
+     */
+    public function manager(): Response
+    {
+        return $this->redirectToRoute('occurrences_dashboard');
     }
 }

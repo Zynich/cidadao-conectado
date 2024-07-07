@@ -3,7 +3,20 @@ app_home:
     path: /
     controller: App\Controller\DefaultController::index
 
+app_manager_redirect:
+    path: /manager/
+    controller: App\Controller\DefaultController::manager
+
 # config/routes.yaml
 app_login:
     path: /login
     controller: App\Controller\SecurityController::login
+
+# config/routes.yaml
+app_logout:
+    path: /logout
+
+# dashboard
+occurrences_dashboard:
+    path: /manager/dashboard
+    controller: App\Controller\OccurrenceDashboardController::index

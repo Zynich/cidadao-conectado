@@ -1,0 +1,108 @@
+.content {
+    overflow-x: hidden; /* Esconda o overflow horizontal para evitar barras de rolagem desnecessárias */
+}
+
+.tableOccurrenceContainer {
+    overflow-x: auto; /* Adiciona scroll horizontal se necessário */
+    margin-bottom: 10px; /* Espaçamento inferior para separar de outros elementos */
+    border: none;
+    border-radius: 5px;
+}
+
+.tableOccurrenceContainer table {
+    border-collapse: separate; /* Separa as bordas das células */
+    border-spacing: 0 10px; /* Espaçamento entre as linhas */
+    width: 100%; /* Garante que a tabela ocupe toda a largura do contêiner */
+    border-radius: 5px; /* Bordas arredondadas apenas para a tabela */
+    overflow: hidden; /* Esconda qualquer conteúdo que ultrapasse os limites */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para criar a aparência de flutuação */
+    border: none;
+}
+
+.tableOccurrenceContainer th,
+.tableOccurrenceContainer td {
+    border: none; /* Remove todas as bordas */
+    padding: 12px 15px; /* Adiciona espaçamento interno */
+    text-align: left !important; /* Alinha o texto à esquerda, com prioridade */
+}
+
+.tableOccurrenceContainer th {
+    background: linear-gradient(to bottom, #333, #555); /* Gradiente preto fosco */
+    color: #fff; /* Texto branco */
+    font-weight: bold; /* Texto em negrito */
+    white-space: nowrap; /* Impede a quebra de linha */
+    overflow: hidden; /* Oculta o texto que não cabe */
+    text-overflow: ellipsis; /* Adiciona "..." ao final do texto que não cabe */
+    border-bottom: 2px solid #444; /* Borda inferior do cabeçalho */
+}
+
+.tableOccurrenceContainer th:first-child {
+    border-top-left-radius: 5px; /* Apenas o primeiro th: arredonda o canto superior esquerdo */
+    border-bottom-left-radius: 5px; /* Apenas o primeiro th: arredonda o canto inferior esquerdo */
+}
+
+.tableOccurrenceContainer th:last-child {
+    border-top-right-radius: 5px; /* Apenas o último th: arredonda o canto superior direito */
+    border-bottom-right-radius: 5px; /* Apenas o último th: arredonda o canto inferior direito */
+}
+
+.tableOccurrenceContainer td {
+    background-color: #f9f9f9; /* Fundo claro para as células */
+}
+
+.tableOccurrenceContainer tr:nth-child(even) td {
+    background-color: #f1f1f1; /* Fundo ligeiramente mais escuro para linhas pares */
+}
+
+.tableOccurrenceContainer tr:hover td {
+    background-color: #eaeaea; /* Fundo mais escuro ao passar o mouse */
+}
+
+/* Responsividade */
+@media (max-width: 1200px) {
+    .table th, .table td {
+        font-size: 12px; /* Ajuste o tamanho da fonte */
+        padding: 8px; /* Ajuste o espaçamento interno */
+    }
+}
+
+@media (max-width: 992px) {
+    .table th, .table td {
+        font-size: 10px; /* Ajuste o tamanho da fonte */
+        padding: 6px; /* Ajuste o espaçamento interno */
+    }
+}
+
+@media (max-width: 768px) {
+    .table th, .table td {
+        font-size: 8px; /* Ajuste o tamanho da fonte */
+        padding: 4px; /* Ajuste o espaçamento interno */
+    }
+}
+
+/* Table Buttons */
+.btn-action {
+    display: inline-flex; 
+    justify-content: left; 
+    align-items: left;
+    width: 30px; 
+    height: 30px; 
+    padding: 0;
+    border: none;
+    background: none; 
+    cursor: pointer;
+}
+
+.fa {
+    color: #333; 
+    font-size: 16px; 
+}
+
+.btn-action i {
+    pointer-events: none; 
+}
+
+.btn-action.occurrences-view i { color: #007bff; }
+.btn-action.occurrences-edit i { color: #ffc107; }
+.btn-action.occurrences-midia i { color: #9400f7; }
+.btn-action.occurrences-pdf i { color: #dc3545; }

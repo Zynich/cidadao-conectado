@@ -3,6 +3,8 @@ security:
     password_hashers:
         App\Entity\User:
             algorithm: auto
+        App\Entity\AdminUser: 
+            algorithm: auto
 
     providers:
         app_user_provider:
@@ -10,36 +12,54 @@ security:
                 class: App\Entity\AdminUser
                 property: email
 
+        app_user_provider_user:
+            entity:
+                class: App\Entity\User
+                property: email
+
     role_hierarchy:
-        ROLE_MANAGER: [ROLE_ALLOWED_TO_SWITCH]
+        ROLE_MANAGER: [ROLE_MANAGER, ROLE_ALLOWED_TO_SWITCH]
 
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        main:
-            switch_user: { role: SUPER_ADMIN }
+        main_admin:
+            switch_user: { role: ROLE_MANAGER }
             lazy: true
             provider: app_user_provider
             custom_authenticators:
-                - App\Security\LoginAuthenticator
+                - App\Security\AdminLoginFormAuthenticator
             logout:
                 path: app_logout
-
+                target: /
             form_login:
-                login_path: app_login
-                check_path: app_login
-                default_target_path: home
-                # Uncomment the next line if you want to enable CSRF protection for the login form
-                # enable_csrf: true
+                login_path: app_admin_login
+                check_path: app_admin_login
+            entry_point: App\Security\AdminLoginFormAuthenticator
+            custom_authenticator: App\Security\AdminLoginFormAuthenticator
 
-            entry_point: App\Security\LoginAuthenticator
+        # main_user:
+        #     switch_user: { role: ROLE_USER }
+        #     lazy: true
+        #     provider: app_user_provider_user
+        #     custom_authenticators:
+        #         - App\Security\UserLoginFormAuthenticator
+        #     logout:
+        #         path: app_logout
+
+        #     form_login:
+        #         login_path: app_user_login
+        #         check_path: app_user_login
+
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: 604800
+                path: /
+                always_remember_me: true
 
     access_control:
-        - { path: ^/$, roles: [SUPER_ADMIN, ROLE_MANAGER] }
-        - { path: ^/templates, roles: PUBLIC_ACCESS }
-        - { path: ^/token, roles: PUBLIC_ACCESS }
+        - { path: ^/$, roles: [ROLE_ADMIN, ROLE_MANAGER] }
         - { path: ^/login, roles: PUBLIC_ACCESS }
-        - { path: ^/access, roles: PUBLIC_ACCESS }
-        - { path: ^/manager/home, roles: [ROLE_MANAGER] }
+        - { path: ^/manager, roles: [ROLE_MANAGER] }
