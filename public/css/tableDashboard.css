@@ -7,6 +7,7 @@
     margin-bottom: 10px; /* Espaçamento inferior para separar de outros elementos */
     border: none;
     border-radius: 5px;
+    overflow-y: auto;
 }
 
 .tableOccurrenceContainer table {
@@ -51,11 +52,29 @@
 }
 
 .tableOccurrenceContainer tr:nth-child(even) td {
-    background-color: #f1f1f1; /* Fundo ligeiramente mais escuro para linhas pares */
+    background-color: #f0ebebfb; /* Fundo ligeiramente mais escuro para linhas pares */
 }
 
 .tableOccurrenceContainer tr:hover td {
-    background-color: #eaeaea; /* Fundo mais escuro ao passar o mouse */
+    background-color: #9b9999; /* Fundo mais escuro ao passar o mouse */
+}
+
+/* Estilo para o cabeçalho fixo */
+.dataTables_wrapper .dataTables_scrollHeadInner {
+    background-color: #333 !important;
+}
+
+   /* Estilo para o cabeçalho fixo */
+.fixedHeader-floating th {
+    background: linear-gradient(to bottom, #333, #555); /* Gradiente preto fosco */
+    color: #fff; /* Texto branco */
+    font-weight: bold; /* Texto em negrito */
+    white-space: nowrap; /* Impede a quebra de linha */
+    overflow: hidden; /* Oculta o texto que não cabe */
+    text-overflow: ellipsis; /* Adiciona "..." ao final do texto que não cabe */
+    border-bottom: 2px solid #444; /* Borda inferior do cabeçalho */
+    z-index: 100 !important;
+    text-align: left !important;
 }
 
 /* Responsividade */
@@ -93,11 +112,6 @@
     cursor: pointer;
 }
 
-.fa {
-    color: #333; 
-    font-size: 16px; 
-}
-
 .btn-action i {
     pointer-events: none; 
 }
@@ -106,3 +120,5 @@
 .btn-action.occurrences-edit i { color: #ffc107; }
 .btn-action.occurrences-midia i { color: #9400f7; }
 .btn-action.occurrences-pdf i { color: #dc3545; }
+.btn-action.occurrences-open { color: #009620 !important; }
+.btn-action.occurrences-close { color: #020202 !important; }

@@ -20,3 +20,12 @@ app_logout:
 occurrences_dashboard:
     path: /manager/dashboard
     controller: App\Controller\OccurrenceDashboardController::index
+
+occurrences_closed:
+    path: /manager/occurrences/closed
+    controller: App\Controller\OccurrencesClosedController::index
+
+# register
+occurrences_register:
+    path: /manager/occurrence/register
+    controller: App\Controller\OccurrenceRegisterController::index

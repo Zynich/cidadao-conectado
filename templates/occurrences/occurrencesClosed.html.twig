@@ -10,21 +10,12 @@
 {# {{ dump(occurrences) }} #}
 
 
-<section class="content" data-page="OCORRÊNCIAS EM ANDAMENTO">
+<section class="content" data-page="OCORRÊNCIAS ENCERRADAS">
     <!-- Filtros de Pesquisa -->
     <div class="filter-box collapse" id="filterSection">
         <div class="filter-content filter-controls occurrence-controls">
             <div class="row mb-4">
-                <div class="col-md-3">
-                    <label for="statusFilter">Status:</label>
-                    <select id="statusFilter" class="form-control">
-                        <option value="">Todos</option>
-                        <option value="aberta">Abertas</option>
-                        <option value="andamento">Em Andamento</option>
-                        <option value="concluida">Concluídas</option>
-                    </select>
-                </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <label for="typeFilter">Tipo:</label>
                     <select id="typeFilter" class="form-control">
                         <option value="">Todos</option>
@@ -33,16 +24,7 @@
                         <option value="tipo3">Tipo 3</option>
                     </select>
                 </div>
-                <div class="col-md-3">
-                    <label for="priorityFilter">Prioridade:</label>
-                    <select id="priorityFilter" class="form-control">
-                        <option value="">Todas</option>
-                        <option value="baixa">Baixa</option>
-                        <option value="media">Média</option>
-                        <option value="alta">Alta</option>
-                    </select>
-                </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <label for="responsibleFilter">Responsável:</label>
                     <select id="responsibleFilter" class="form-control">
                         <option value="">Todos</option>
@@ -51,17 +33,10 @@
                         <option value="responsavel3">Responsável 3</option>
                     </select>
                 </div>
-            </div>
-            <div class="row mb-4">               
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <label for="occurredDateFilter">Data de Ocorrência:</label>
                     <input type="date" id="startOccurredDate" class="form-control mb-2" placeholder="Data Inicial">
                     <input type="date" id="endOccurredDate" class="form-control" placeholder="Data Final">
-                </div>
-                <div class="col-md-6">
-                    <label for="slaDueDateFilter">SLA Vencimento:</label>
-                    <input type="date" id="startSlaDueDate" class="form-control mb-2" placeholder="Data Inicial">
-                    <input type="date" id="endSlaDueDate" class="form-control" placeholder="Data Final">
                 </div>
             </div>
         </div>
@@ -79,8 +54,8 @@
                 </button>
             </div>
             <div class="col-md-4 text-right">
-                <a href="{{ path('occurrences_closed') }}" class="btn btn-dark">
-                    Ocorrências Encerradas
+                <a href="{{ path('occurrences_dashboard') }}" class="btn btn-dark">
+                    Ocorrências Abertas
                 </a>
             </div>
         </div>
@@ -112,13 +87,9 @@
             occurrenceCode: "CAN012024",
             title: "Ocorrência Teste 1",
             status: "Aberta",
-            priority: "Alta",
             occurrenceDate: "2024-01-01 12:00",
             occurrenceType: "Tipo 1",
             responsible: "Responsável 1",
-            slaExpiration: "2024-01-15 12:00",
-            address: "Rua Teste, 123, Bairro Teste, Cidade Teste, Estado Teste, 12345-678, Complemento Teste",
-            description: "Descrição Teste 1",
             lastUpdate: "2024-01-01 12:30"
         },
         {
@@ -126,13 +97,9 @@
             occurrenceCode: "CAN022024",
             title: "Ocorrência Teste 2",
             status: "Em Progresso",
-            priority: "Média",
             occurrenceDate: "2024-02-01 12:00",
             occurrenceType: "Tipo 2",
             responsible: "Responsável 2",
-            slaExpiration: "2024-02-15 12:00",
-            address: "Rua Teste, 124, Bairro Teste, Cidade Teste, Estado Teste, 12345-678, Complemento Teste",
-            description: "Descrição Teste 2",
             lastUpdate: "2024-02-01 12:30"
         },
         {
@@ -140,13 +107,179 @@
             occurrenceCode: "CAN032024",
             title: "Ocorrência Teste 3",
             status: "Concluído",
-            priority: "Baixa",
             occurrenceDate: "2024-03-01 12:00",
             occurrenceType: "Tipo 3",
             responsible: "Responsável 3",
-            slaExpiration: "2024-03-15 12:00",
-            address: "Rua Teste, 125, Bairro Teste, Cidade Teste, Estado Teste, 12345-678, Complemento Teste",
-            description: "Descrição Teste 3",
+            lastUpdate: "2024-03-01 12:30"
+        },
+         {
+            id: 3,
+            occurrenceCode: "CAN032024",
+            title: "Ocorrência Teste 3",
+            status: "Concluído",
+            occurrenceDate: "2024-03-01 12:00",
+            occurrenceType: "Tipo 3",
+            responsible: "Responsável 3",
+            lastUpdate: "2024-03-01 12:30"
+        },
+         {
+            id: 3,
+            occurrenceCode: "CAN032024",
+            title: "Ocorrência Teste 3",
+            status: "Concluído",
+            occurrenceDate: "2024-03-01 12:00",
+            occurrenceType: "Tipo 3",
+            responsible: "Responsável 3",
+            lastUpdate: "2024-03-01 12:30"
+        },
+         {
+            id: 3,
+            occurrenceCode: "CAN032024",
+            title: "Ocorrência Teste 3",
+            status: "Concluído",
+            occurrenceDate: "2024-03-01 12:00",
+            occurrenceType: "Tipo 3",
+            responsible: "Responsável 3",
+            lastUpdate: "2024-03-01 12:30"
+        },
+         {
+            id: 3,
+            occurrenceCode: "CAN032024",
+            title: "Ocorrência Teste 3",
+            status: "Concluído",
+            occurrenceDate: "2024-03-01 12:00",
+            occurrenceType: "Tipo 3",
+            responsible: "Responsável 3",
+            lastUpdate: "2024-03-01 12:30"
+        },
+         {
+            id: 3,
+            occurrenceCode: "CAN032024",
+            title: "Ocorrência Teste 3",
+            status: "Concluído",
+            occurrenceDate: "2024-03-01 12:00",
+            occurrenceType: "Tipo 3",
+            responsible: "Responsável 3",
+            lastUpdate: "2024-03-01 12:30"
+        },
+         {
+            id: 3,
+            occurrenceCode: "CAN032024",
+            title: "Ocorrência Teste 3",
+            status: "Concluído",
+            occurrenceDate: "2024-03-01 12:00",
+            occurrenceType: "Tipo 3",
+            responsible: "Responsável 3",
+            lastUpdate: "2024-03-01 12:30"
+        },
+         {
+            id: 3,
+            occurrenceCode: "CAN032024",
+            title: "Ocorrência Teste 3",
+            status: "Concluído",
+            occurrenceDate: "2024-03-01 12:00",
+            occurrenceType: "Tipo 3",
+            responsible: "Responsável 3",
+            lastUpdate: "2024-03-01 12:30"
+        },
+         {
+            id: 3,
+            occurrenceCode: "CAN032024",
+            title: "Ocorrência Teste 3",
+            status: "Concluído",
+            occurrenceDate: "2024-03-01 12:00",
+            occurrenceType: "Tipo 3",
+            responsible: "Responsável 3",
+            lastUpdate: "2024-03-01 12:30"
+        },
+         {
+            id: 3,
+            occurrenceCode: "CAN032024",
+            title: "Ocorrência Teste 3",
+            status: "Concluído",
+            occurrenceDate: "2024-03-01 12:00",
+            occurrenceType: "Tipo 3",
+            responsible: "Responsável 3",
+            lastUpdate: "2024-03-01 12:30"
+        },
+         {
+            id: 3,
+            occurrenceCode: "CAN032024",
+            title: "Ocorrência Teste 3",
+            status: "Concluído",
+            occurrenceDate: "2024-03-01 12:00",
+            occurrenceType: "Tipo 3",
+            responsible: "Responsável 3",
+            lastUpdate: "2024-03-01 12:30"
+        },
+         {
+            id: 3,
+            occurrenceCode: "CAN032024",
+            title: "Ocorrência Teste 3",
+            status: "Concluído",
+            occurrenceDate: "2024-03-01 12:00",
+            occurrenceType: "Tipo 3",
+            responsible: "Responsável 3",
+            lastUpdate: "2024-03-01 12:30"
+        },
+         {
+            id: 3,
+            occurrenceCode: "CAN032024",
+            title: "Ocorrência Teste 3",
+            status: "Concluído",
+            occurrenceDate: "2024-03-01 12:00",
+            occurrenceType: "Tipo 3",
+            responsible: "Responsável 3",
+            lastUpdate: "2024-03-01 12:30"
+        },
+        {
+            id: 3,
+            occurrenceCode: "CAN032024",
+            title: "Ocorrência Teste 3",
+            status: "Concluído",
+            occurrenceDate: "2024-03-01 12:00",
+            occurrenceType: "Tipo 3",
+            responsible: "Responsável 3",
+            lastUpdate: "2024-03-01 12:30"
+        },
+        {
+            id: 3,
+            occurrenceCode: "CAN032024",
+            title: "Ocorrência Teste 3",
+            status: "Concluído",
+            occurrenceDate: "2024-03-01 12:00",
+            occurrenceType: "Tipo 3",
+            responsible: "Responsável 3",
+            lastUpdate: "2024-03-01 12:30"
+        },
+        {
+            id: 3,
+            occurrenceCode: "CAN032024",
+            title: "Ocorrência Teste 3",
+            status: "Concluído",
+            occurrenceDate: "2024-03-01 12:00",
+            occurrenceType: "Tipo 3",
+            responsible: "Responsável 3",
+            lastUpdate: "2024-03-01 12:30"
+        },
+        {
+            id: 3,
+            occurrenceCode: "CAN032024",
+            title: "Ocorrência Teste 3",
+            status: "Concluído",
+            occurrenceDate: "2024-03-01 12:00",
+            occurrenceType: "Tipo 3",
+            responsible: "Responsável 3",
+            lastUpdate: "2024-03-01 12:30"
+        },
+        {
+            id: 3,
+            occurrenceCode: "CAN032024",
+            title: "Ocorrência Teste 3",
+            status: "Concluído",
+            occurrenceDate: "2024-03-01 12:00",
+            occurrenceType: "Tipo 3",
+            responsible: "Responsável 3",
             lastUpdate: "2024-03-01 12:30"
         }
     ];
@@ -166,13 +299,9 @@ function setupOccurrencesDataTable() {
             { data: 'occurrenceCode', title: 'Código' },
             { data: 'title', title: 'Título' },
             { data: 'status', title: 'Status' },
-            { data: 'priority', title: 'Prioridade' },
             { data: 'occurrenceDate', title: 'Data da Ocorrência' },
             { data: 'occurrenceType', title: 'Tipo' },
             { data: 'responsible', title: 'Responsável' },
-            { data: 'slaExpiration', title: 'SLA' },
-            { data: 'address', title: 'Endereço' },
-            { data: 'description', title: 'Descrição' },
             { data: 'lastUpdate', title: 'Última Atualização' },
             { title: 'Ações' }
         ],
@@ -183,10 +312,8 @@ function setupOccurrencesDataTable() {
                     var occurrencesId = row.id; 
                     return `
                         <button class="btn-action occurrences-view" title="Visualizar" data-occurrences-id="${occurrencesId}"><i class="fa fa-eye"></i></button>
-                        <button class="btn-action occurrences-edit" title="Editar" data-occurrences-id="${occurrencesId}"><i class="fa fa-pen"></i></button>
-                        <button class="btn-action occurrences-midia" title="Midia" data-occurrences-id="${occurrencesId}"><i class="fa fa-photo-video"></i></button>
                         <button class="btn-action occurrences-pdf" title="Exportar Pdf" data-occurrences-id="${occurrencesId}"><i class="fa fa-file-pdf"></i></button>
-                        <button class="btn-action occurrences-close" title="Encerrar Ocorrência" data-occurrences-id="${occurrencesId}"><i class="fa fa-lock"></i></button>
+                        <button class="btn-action occurrences-open" title="Reabrir ocorrência" data-occurrences-id="${occurrencesId}"><i class="fa fa-unlock"></i></button>
                     `;
                 }
             }
