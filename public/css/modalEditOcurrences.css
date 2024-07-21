@@ -1,0 +1,53 @@
+.modal-body {
+    overflow-y: auto;
+    max-height: 60vh;
+}
+
+.modal-section {
+    background-color: #f8f9fa;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #dee2e6;
+}
+
+.modal-section h6 {
+    margin-top: 0;
+}
+
+#occurrenceMedia .media-item img {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.modal-header .modal-code {
+    margin-left: 20px;
+    font-weight: normal;
+    color: #6c757d;
+}
+
+.modal-header .close {
+    margin: 0;
+}
+
+.modal-header .modal-title {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+#occurrenceComments .comment,
+#occurrenceMedia .media-item {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.delete-comment,
+.delete-media {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}

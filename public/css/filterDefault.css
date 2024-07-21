@@ -28,11 +28,6 @@
     width: auto;
 }
 
-.occurrence-controls select.form-control {
-    margin-right: 10px;
-    background-color: #FFF;
-}
-
 .pointer {
     cursor: pointer;
 }

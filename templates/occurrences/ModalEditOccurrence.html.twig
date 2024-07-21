@@ -1,0 +1,254 @@
+{% block stylesheets %}
+    {# <link rel="stylesheet" href="{{ asset('css/modalEditOcurrences.css') }}"> #}
+{% endblock %}
+
+{% block container %}
+    {# Modal de Encerramento de Ocorrência #}
+    <div class="modal fade" id="modalEditOccurrence" tabindex="-1" role="dialog" aria-labelledby="editOccurrenceModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editOccurrenceModalLabel">Editar Ocorrência</h5>
+                    <span class="editOccurrenceCode">Código da Ocorrência</span>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Dados Iniciais da Ocorrência -->
+                    <div class="modal-section">
+                        <h6>Dados Iniciais</h6>
+                        <div class="form-group">
+                            <label for="editOccurrenceStatus">Status:</label>
+                            <select class="form-control" id="editOccurrenceStatus">
+                                <option value="aberta">Aberta</option>
+                                <option value="em_andamento">Em Andamento</option>
+                                <option value="fechada">Fechada</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="editOccurrencePriority">Prioridade:</label>
+                            <select class="form-control" id="editOccurrencePriority">
+                                <option value="baixa">Baixa</option>
+                                <option value="média">Média</option>
+                                <option value="alta">Alta</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="editOccurrenceDate">Data da Ocorrência:</label>
+                            <input type="date" class="form-control" id="editOccurrenceDate">
+                        </div>
+                        <div class="form-group">
+                            <label for="editOccurrenceType">Tipo:</label>
+                            <select class="form-control" id="editOccurrenceType">
+                                <option value="incidente">Incidente</option>
+                                <option value="reclamação">Reclamação</option>
+                                <option value="sugestão">Sugestão</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="editOccurrenceSLA">SLA:</label>
+                            <input type="text" class="form-control" id="editOccurrenceSLA">
+                        </div>
+                        <div class="form-group">
+                            <label for="editOccurrenceLastUpdate">Última Atualização:</label>
+                            <input type="text" class="form-control" id="editOccurrenceLastUpdate">
+                        </div>
+                        <div class="form-group">
+                            <label for="editOccurrenceDescription">Descrição:</label>
+                            <textarea class="form-control" id="editOccurrenceDescription"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Endereço da Ocorrência -->
+                    <div class="modal-section">
+                        <h6>Endereço da Ocorrência</h6>
+                        <div class="form-group">
+                            <label for="editOccurrenceAddressStreet">Rua:</label>
+                            <input type="text" class="form-control" id="editOccurrenceAddressStreet">
+                        </div>
+                        <div class="form-group">
+                            <label for="editOccurrenceAddressNumber">Número:</label>
+                            <input type="text" class="form-control" id="editOccurrenceAddressNumber">
+                        </div>
+                        <div class="form-group">
+                            <label for="editOccurrenceAddressComplement">Complemento:</label>
+                            <input type="text" class="form-control" id="editOccurrenceAddressComplement">
+                        </div>
+                        <div class="form-group">
+                            <label for="editOccurrenceAddressNeighborhood">Bairro:</label>
+                            <input type="text" class="form-control" id="editOccurrenceAddressNeighborhood">
+                        </div>
+                        <div class="form-group">
+                            <label for="editOccurrenceAddressCity">Cidade:</label>
+                            <input type="text" class="form-control" id="editOccurrenceAddressCity">
+                        </div>
+                        <div class="form-group">
+                            <label for="editOccurrenceAddressState">Estado:</label>
+                            <input type="text" class="form-control" id="editOccurrenceAddressState">
+                        </div>
+                        <div class="form-group">
+                            <label for="editOccurrenceAddressZipcode">CEP:</label>
+                            <input type="text" class="form-control" id="editOccurrenceAddressZipcode">
+                        </div>
+                    </div>
+
+                    <!-- Comentários -->
+                    <div class="modal-section">
+                        <h6>Comentários</h6>
+                        <div id="editOccurrenceComments">
+                            <!-- Comentários serão inseridos aqui -->
+                        </div>
+                        <textarea class="form-control mb-2" id="newCommentText" placeholder="Adicione um comentário"></textarea>
+                        <button class="btn btn-primary" id="addComment">Adicionar Comentário</button>
+                    </div>
+
+                    <!-- Mídias Anexadas -->
+                    <div class="modal-section">
+                        <h6>Mídias Anexadas</h6>
+                        <div id="editOccurrenceMedia">
+                            <!-- Mídias serão inseridas aqui -->
+                        </div>
+                        <input type="file" id="addMedia">
+                        <button class="btn btn-primary" id="uploadMedia">Adicionar Mídia</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary mr-2" id="saveOccurrence">Salvar Dados</button>
+                    <div class="ml-auto">
+                        <button type="button" class="btn btn-danger" id="closeOccurrence">Encerrar Ocorrência</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# Modal de Confirmação de Encerramento #}
+    <div class="modal fade" id="modalConfirmClose" tabindex="-1" role="dialog" aria-labelledby="confirmCloseModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmCloseModalLabel">Confirmar Encerramento</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Você tem certeza que deseja encerrar esta ocorrência?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" id="confirmClose">Encerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    const addCommentButton = $('#addComment');
+    const newCommentText = $('#newCommentText');
+    const occurrenceComments = $('#editOccurrenceComments');
+    const addMediaInput = $('#addMedia');
+    const uploadMediaButton = $('#uploadMedia');
+    const occurrenceMedia = $('#editOccurrenceMedia');
+    const closeOccurrenceButton = $('#closeOccurrence');
+    const confirmCloseButton = $('#confirmClose');
+    const saveOccurrenceButton = $('#saveOccurrence');
+
+    addCommentButton.on('click', function() {
+        const commentText = newCommentText.val().trim();
+        if (commentText) {
+            const newComment = $('<div class="comment"></div>');
+            newComment.html(`
+                <textarea class="form-control mb-2" placeholder="Adicione um comentário">${commentText}</textarea>
+                <button class="btn btn-danger btn-sm mb-2 delete-comment">Excluir</button>
+            `);
+            occurrenceComments.append(newComment);
+            newCommentText.val(''); // Clear the input after adding
+        }
+    });
+
+    occurrenceComments.on('click', '.delete-comment', function() {
+        $(this).parent().remove();
+    });
+
+    uploadMediaButton.on('click', function() {
+        const files = addMediaInput[0].files;
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            const mediaElement = $('<div class="media-item"></div>');
+            mediaElement.html(`
+                <span>${file.name}</span>
+                <button class="btn btn-danger btn-sm mb-2 delete-media">Excluir</button>
+            `);
+            occurrenceMedia.append(mediaElement);
+        }
+    });
+
+    occurrenceMedia.on('click', '.delete-media', function() {
+        $(this).parent().remove();
+    });
+
+    closeOccurrenceButton.on('click', function() {
+        $('#modalConfirmClose').modal('show');
+    });
+
+    confirmCloseButton.on('click', function() {
+        // Lógica para encerrar a ocorrência
+        $('#modalConfirmClose').modal('hide');
+        $('#modalEditOccurrence').modal('hide');
+    });
+
+    saveOccurrenceButton.on('click', function() {
+        // Lógica para salvar a ocorrência
+        $('#modalEditOccurrence').modal('hide');
+    });
+
+    // Função para carregar dados da ocorrência no modal
+    window.showEditOccurrenceModal = function(occurrenceData) {
+        $('#editOccurrenceStatus').val(occurrenceData.status);
+        $('#editOccurrencePriority').val(occurrenceData.priority);
+        $('#editOccurrenceDate').val(occurrenceData.date);
+        $('#editOccurrenceType').val(occurrenceData.type);
+        $('#editOccurrenceSLA').val(occurrenceData.sla);
+        $('#editOccurrenceLastUpdate').val(occurrenceData.lastUpdate);
+        $('#editOccurrenceDescription').val(occurrenceData.description);
+        $('#editOccurrenceAddressStreet').val(occurrenceData.address.street);
+        $('#editOccurrenceAddressNumber').val(occurrenceData.address.number);
+        $('#editOccurrenceAddressComplement').val(occurrenceData.address.complement);
+        $('#editOccurrenceAddressNeighborhood').val(occurrenceData.address.neighborhood);
+        $('#editOccurrenceAddressCity').val(occurrenceData.address.city);
+        $('#editOccurrenceAddressState').val(occurrenceData.address.state);
+        $('#editOccurrenceAddressZipcode').val(occurrenceData.address.zipcode);
+
+        // Carregar comentários
+        occurrenceComments.empty();
+        occurrenceData.comments.forEach(comment => {
+            const commentElement = $('<div class="comment"></div>');
+            commentElement.html(`
+                <textarea class="form-control mb-2" placeholder="Adicione um comentário">${comment.text}</textarea>
+                <button class="btn btn-danger btn-sm mb-2 delete-comment">Excluir</button>
+            `);
+            occurrenceComments.append(commentElement);
+        });
+
+        // Carregar mídias
+        occurrenceMedia.empty();
+        occurrenceData.media.forEach(media => {
+            const mediaElement = $('<div class="media-item"></div>');
+            mediaElement.html(`
+                <span>${media.name}</span>
+                <button class="btn btn-danger btn-sm mb-2 delete-media">Excluir</button>
+            `);
+            occurrenceMedia.append(mediaElement);
+        });
+
+        $('#modalEditOccurrence').modal('show');
+    };
+});
+</script>
+{% endblock %}

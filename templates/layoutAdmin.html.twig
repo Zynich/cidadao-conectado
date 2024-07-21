@@ -18,14 +18,17 @@
             <div class="collapse navbar-collapse ml-auto" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Cadastrar Ocorrência</a>
+                        <a class="nav-link" href="{{ path('occurrences_management') }}">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('occurrence_register') }}">Cadastrar Ocorrência</a>
                     </li>
                     <li class="nav-item dropdown dropdown-hover">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownGestores" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Cadastro
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownGestores">
-                            <a class="dropdown-item" href="#">Funcionários</a>
+                            <a class="dropdown-item" href="{{ path('employee_register') }}">Funcionários</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown dropdown-hover">

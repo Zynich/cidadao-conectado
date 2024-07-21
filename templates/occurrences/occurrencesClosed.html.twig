@@ -2,8 +2,7 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/filterDashboard.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/tableDashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/tableOccurrences.css') }}">
 {% endblock %}
 
 {% block admin_content %}
@@ -12,7 +11,7 @@
 
 <section class="content" data-page="OCORRÊNCIAS ENCERRADAS">
     <!-- Filtros de Pesquisa -->
-    <div class="filter-box collapse" id="filterSection">
+    {# <div class="filter-box collapse" id="filterSection">
         <div class="filter-content filter-controls occurrence-controls">
             <div class="row mb-4">
                 <div class="col-md-4">
@@ -39,8 +38,16 @@
                     <input type="date" id="endOccurredDate" class="form-control" placeholder="Data Final">
                 </div>
             </div>
+            <div class="col-md-12 text-center">
+                <button class="btn btn-danger" type="button" data-toggle="collapse" aria-expanded="false">
+                    Limpar Filtro
+                </button>
+                <button class="btn btn-dark" type="button" data-toggle="collapse" aria-expanded="false">
+                    Aplicar Filtro
+                </button>
+            </div>
         </div>
-    </div>
+    </div> #}
 
     <div class="container-fluid">
         <!-- Botão de Filtros -->
@@ -54,7 +61,7 @@
                 </button>
             </div>
             <div class="col-md-4 text-right">
-                <a href="{{ path('occurrences_dashboard') }}" class="btn btn-dark">
+                <a href="{{ path('occurrences_management') }}" class="btn btn-dark">
                     Ocorrências Abertas
                 </a>
             </div>
@@ -89,7 +96,6 @@
             status: "Aberta",
             occurrenceDate: "2024-01-01 12:00",
             occurrenceType: "Tipo 1",
-            responsible: "Responsável 1",
             lastUpdate: "2024-01-01 12:30"
         },
         {
@@ -99,7 +105,6 @@
             status: "Em Progresso",
             occurrenceDate: "2024-02-01 12:00",
             occurrenceType: "Tipo 2",
-            responsible: "Responsável 2",
             lastUpdate: "2024-02-01 12:30"
         },
         {
@@ -109,7 +114,6 @@
             status: "Concluído",
             occurrenceDate: "2024-03-01 12:00",
             occurrenceType: "Tipo 3",
-            responsible: "Responsável 3",
             lastUpdate: "2024-03-01 12:30"
         },
          {
@@ -119,7 +123,6 @@
             status: "Concluído",
             occurrenceDate: "2024-03-01 12:00",
             occurrenceType: "Tipo 3",
-            responsible: "Responsável 3",
             lastUpdate: "2024-03-01 12:30"
         },
          {
@@ -129,7 +132,6 @@
             status: "Concluído",
             occurrenceDate: "2024-03-01 12:00",
             occurrenceType: "Tipo 3",
-            responsible: "Responsável 3",
             lastUpdate: "2024-03-01 12:30"
         },
          {
@@ -139,7 +141,6 @@
             status: "Concluído",
             occurrenceDate: "2024-03-01 12:00",
             occurrenceType: "Tipo 3",
-            responsible: "Responsável 3",
             lastUpdate: "2024-03-01 12:30"
         },
          {
@@ -149,7 +150,6 @@
             status: "Concluído",
             occurrenceDate: "2024-03-01 12:00",
             occurrenceType: "Tipo 3",
-            responsible: "Responsável 3",
             lastUpdate: "2024-03-01 12:30"
         },
          {
@@ -159,7 +159,6 @@
             status: "Concluído",
             occurrenceDate: "2024-03-01 12:00",
             occurrenceType: "Tipo 3",
-            responsible: "Responsável 3",
             lastUpdate: "2024-03-01 12:30"
         },
          {
@@ -169,7 +168,6 @@
             status: "Concluído",
             occurrenceDate: "2024-03-01 12:00",
             occurrenceType: "Tipo 3",
-            responsible: "Responsável 3",
             lastUpdate: "2024-03-01 12:30"
         },
          {
@@ -179,7 +177,6 @@
             status: "Concluído",
             occurrenceDate: "2024-03-01 12:00",
             occurrenceType: "Tipo 3",
-            responsible: "Responsável 3",
             lastUpdate: "2024-03-01 12:30"
         },
          {
@@ -189,7 +186,6 @@
             status: "Concluído",
             occurrenceDate: "2024-03-01 12:00",
             occurrenceType: "Tipo 3",
-            responsible: "Responsável 3",
             lastUpdate: "2024-03-01 12:30"
         },
          {
@@ -199,7 +195,6 @@
             status: "Concluído",
             occurrenceDate: "2024-03-01 12:00",
             occurrenceType: "Tipo 3",
-            responsible: "Responsável 3",
             lastUpdate: "2024-03-01 12:30"
         },
          {
@@ -209,7 +204,6 @@
             status: "Concluído",
             occurrenceDate: "2024-03-01 12:00",
             occurrenceType: "Tipo 3",
-            responsible: "Responsável 3",
             lastUpdate: "2024-03-01 12:30"
         },
          {
@@ -219,7 +213,6 @@
             status: "Concluído",
             occurrenceDate: "2024-03-01 12:00",
             occurrenceType: "Tipo 3",
-            responsible: "Responsável 3",
             lastUpdate: "2024-03-01 12:30"
         },
          {
@@ -229,7 +222,6 @@
             status: "Concluído",
             occurrenceDate: "2024-03-01 12:00",
             occurrenceType: "Tipo 3",
-            responsible: "Responsável 3",
             lastUpdate: "2024-03-01 12:30"
         },
         {
@@ -239,7 +231,6 @@
             status: "Concluído",
             occurrenceDate: "2024-03-01 12:00",
             occurrenceType: "Tipo 3",
-            responsible: "Responsável 3",
             lastUpdate: "2024-03-01 12:30"
         },
         {
@@ -249,7 +240,6 @@
             status: "Concluído",
             occurrenceDate: "2024-03-01 12:00",
             occurrenceType: "Tipo 3",
-            responsible: "Responsável 3",
             lastUpdate: "2024-03-01 12:30"
         },
         {
@@ -259,7 +249,6 @@
             status: "Concluído",
             occurrenceDate: "2024-03-01 12:00",
             occurrenceType: "Tipo 3",
-            responsible: "Responsável 3",
             lastUpdate: "2024-03-01 12:30"
         },
         {
@@ -269,7 +258,6 @@
             status: "Concluído",
             occurrenceDate: "2024-03-01 12:00",
             occurrenceType: "Tipo 3",
-            responsible: "Responsável 3",
             lastUpdate: "2024-03-01 12:30"
         },
         {
@@ -279,7 +267,6 @@
             status: "Concluído",
             occurrenceDate: "2024-03-01 12:00",
             occurrenceType: "Tipo 3",
-            responsible: "Responsável 3",
             lastUpdate: "2024-03-01 12:30"
         }
     ];
@@ -301,7 +288,6 @@ function setupOccurrencesDataTable() {
             { data: 'status', title: 'Status' },
             { data: 'occurrenceDate', title: 'Data da Ocorrência' },
             { data: 'occurrenceType', title: 'Tipo' },
-            { data: 'responsible', title: 'Responsável' },
             { data: 'lastUpdate', title: 'Última Atualização' },
             { title: 'Ações' }
         ],
@@ -309,11 +295,10 @@ function setupOccurrencesDataTable() {
             {
                 targets: -1, // Última coluna (Ações)
                 render: function (data, type, row, meta) {
-                    var occurrencesId = row.id; 
+                    var occurrenceId = row.id; 
                     return `
-                        <button class="btn-action occurrences-view" title="Visualizar" data-occurrences-id="${occurrencesId}"><i class="fa fa-eye"></i></button>
-                        <button class="btn-action occurrences-pdf" title="Exportar Pdf" data-occurrences-id="${occurrencesId}"><i class="fa fa-file-pdf"></i></button>
-                        <button class="btn-action occurrences-open" title="Reabrir ocorrência" data-occurrences-id="${occurrencesId}"><i class="fa fa-unlock"></i></button>
+                        <button class="btn-action occurrence-view" title="Visualizar" data-occurrence-id="${occurrenceId}"><i class="fa fa-eye"></i></button>
+                        <button class="btn-action occurrence-open" title="Reabrir ocorrência" data-occurrence-id="${occurrenceId}"><i class="fa fa-unlock"></i></button>
                     `;
                 }
             }

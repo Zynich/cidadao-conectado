@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Security;
-
+use App\Repository\AdminUserRepository;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,6 +15,7 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
+use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 
 class AdminLoginFormAuthenticator extends AbstractLoginFormAuthenticator
 {
@@ -22,15 +23,24 @@ class AdminLoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
     public const LOGIN_ROUTE = 'app_login';
 
-    public function __construct(private UrlGeneratorInterface $urlGenerator)
+    public function __construct(private UrlGeneratorInterface $urlGenerator, AdminUserRepository $adminUserRepository)
     {
+        $this->urlGenerator = $urlGenerator;
+        $this->adminUserRepository = $adminUserRepository;
     }
 
     public function authenticate(Request $request): Passport
     {
         $email = $request->request->get('email', '');
+        $password = $request->request->get('password', '');
 
         $request->getSession()->set(Security::LAST_USERNAME, $email);
+
+        $user = $this->adminUserRepository->findOneBy(['email' => $email]);
+
+        if (!$user || !$user->isEnable()) {
+            throw new CustomUserMessageAuthenticationException('Usuário inativo ou não encontrado.');
+        }
 
         return new Passport(
             new UserBadge($email),
@@ -48,7 +58,7 @@ class AdminLoginFormAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        return new RedirectResponse($this->urlGenerator->generate('occurrences_dashboard'));
+        return new RedirectResponse($this->urlGenerator->generate('occurrences_management'));
     }
 
     protected function getLoginUrl(Request $request): string

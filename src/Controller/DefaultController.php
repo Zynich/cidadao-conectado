@@ -14,7 +14,7 @@ class DefaultController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->redirectToRoute('occurrences_dashboard');
+        return $this->redirectToRoute('occurrences_management');
     }
 
     /**
@@ -22,6 +22,6 @@ class DefaultController extends AbstractController
      */
     public function manager(): Response
     {
-        return $this->redirectToRoute('occurrences_dashboard');
+        return $this->redirectToRoute('occurrences_management');
     }
 }

@@ -1,0 +1,60 @@
+.content {
+    overflow-x: hidden; /* Esconda o overflow horizontal para evitar barras de rolagem desnecessárias */
+}
+
+/* Estilo para o cabeçalho fixo */
+.dataTables_wrapper .dataTables_scrollHeadInner {
+    background-color: #333 !important;
+}
+
+   /* Estilo para o cabeçalho fixo */
+.fixedHeader-floating th {
+    background: linear-gradient(to bottom, #333, #555); /* Gradiente preto fosco */
+    color: #fff; /* Texto branco */
+    font-weight: bold; /* Texto em negrito */
+    white-space: nowrap; /* Impede a quebra de linha */
+    overflow: hidden; /* Oculta o texto que não cabe */
+    text-overflow: ellipsis; /* Adiciona "..." ao final do texto que não cabe */
+    border-bottom: 2px solid #444; /* Borda inferior do cabeçalho */
+    z-index: 100 !important;
+    text-align: left !important;
+}
+
+/* Responsividade */
+@media (max-width: 1200px) {
+    .table th, .table td {
+        font-size: 12px; /* Ajuste o tamanho da fonte */
+        padding: 8px; /* Ajuste o espaçamento interno */
+    }
+}
+
+@media (max-width: 992px) {
+    .table th, .table td {
+        font-size: 10px; /* Ajuste o tamanho da fonte */
+        padding: 6px; /* Ajuste o espaçamento interno */
+    }
+}
+
+@media (max-width: 768px) {
+    .table th, .table td {
+        font-size: 8px; /* Ajuste o tamanho da fonte */
+        padding: 4px; /* Ajuste o espaçamento interno */
+    }
+}
+
+/* Table Buttons */
+.btn-action {
+    display: inline-flex; 
+    justify-content: left; 
+    align-items: left;
+    width: 30px; 
+    height: 30px; 
+    padding: 0;
+    border: none;
+    background: none; 
+    cursor: pointer;
+}
+
+.btn-action i {
+    pointer-events: none; 
+}

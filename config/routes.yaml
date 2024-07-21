@@ -16,16 +16,37 @@ app_login:
 app_logout:
     path: /logout
 
-# dashboard
-occurrences_dashboard:
-    path: /manager/dashboard
-    controller: App\Controller\OccurrenceDashboardController::index
+# config API endpoint
+login:
+    path: /api/login
+    controller: App\Controller\Api\AuthController::login
+occurrences:
+    path: /api/occurrences
+    controller: App\Controller\Api\OccurrenceController::index
+    methods: GET
+create_occurrence:
+    path: /api/occurrences
+    controller: App\Controller\Api\OccurrenceController::create
+    methods: POST
+
+# Occurrences Management
+occurrences_management:
+    path: /manager/occurrences/management
+    controller: App\Controller\OccurrencesManagementController::index
 
 occurrences_closed:
     path: /manager/occurrences/closed
     controller: App\Controller\OccurrencesClosedController::index
 
 # register
-occurrences_register:
+occurrence_register:
     path: /manager/occurrence/register
     controller: App\Controller\OccurrenceRegisterController::index
+
+# employee
+employee_register:
+    path: /manager/employee/register
+    controller: App\Controller\EmployeeController::index
+
+
+

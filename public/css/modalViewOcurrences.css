@@ -1,0 +1,33 @@
+/* Estilos para o modal */
+.modal-body {
+    max-height: 70vh; /* Limite máximo de altura */
+    overflow-y: auto; /* Barra de rolagem */
+}
+
+/* Estilo para as seções do modal */
+.modal-section {
+    background-color: #9c9a9a; /* Cor de fundo leve */
+    padding: 15px;
+    margin-bottom: 10px; /* Espaçamento entre seções */
+    border-radius: 5px; /* Bordas arredondadas */
+}
+
+/* Estilo para a seção de mídias */
+#occurrenceMedia img,
+#occurrenceMedia video {
+    margin-right: 10px; /* Espaçamento entre mídias */
+    margin-bottom: 10px; /* Espaçamento entre mídias */
+}
+
+/* Estilo para o título e código na header do modal */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-code {
+    font-size: 0.9rem;
+    color: #6c757d;
+    font-weight: normal;
+}

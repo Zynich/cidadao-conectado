@@ -16,7 +16,8 @@
     <!-- FixedHeader CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedheader/3.1.9/css/fixedHeader.dataTables.css">
     {# Inclua seu CSS personalizado #}
-    
+    <link rel="stylesheet" href="{{ asset('css/filterDefault.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/tableDefault.css') }}">
   
     {% block stylesheets %}{% endblock %}
 </head>
@@ -24,6 +25,7 @@
     {% block body %}{% endblock %}
 
     {# Inclua o jQuery e o Bootstrap 4 JS no final do corpo para melhor performance #}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>

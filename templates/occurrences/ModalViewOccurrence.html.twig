@@ -1,0 +1,66 @@
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/modalViewOcurrences.css') }}">
+{% endblock %}
+
+{% block container %}
+    {# templates/occurrence/view.html.twig #}
+    <div class="modal fade" id="modalViewOccurrence" tabindex="-1" role="dialog" aria-labelledby="viewOccurrenceModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="viewOccurrenceModalLabel">Título da Ocorrência</h5>
+                    <span class="viewOccurrenceCode">Código da Ocorrência</span>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Dados Iniciais da Ocorrência -->
+                    <div class="modal-section">
+                        <h6>Dados Iniciais</h6>
+                        <p><strong>Status:</strong> <span id="viewOccurrenceStatus">Status</span></p>
+                        <p><strong>Prioridade:</strong> <span id="viewOccurrencePriority">Prioridade</span></p>
+                        <p><strong>Data da Ocorrência:</strong> <span id="viewOccurrenceDate">Data da Ocorrência</span></p>
+                        <p><strong>Tipo:</strong> <span id="viewOccurrenceType">Tipo</span></p>
+                        <p><strong>SLA:</strong> <span id="viewOccurrenceSLA">SLA</span></p>
+                        <p><strong>Última Atualização:</strong> <span id="viewOccurrenceLastUpdate">Última Atualização</span></p>
+                        <!-- Descrição -->
+                        <h6>Descrição</h6>
+                        <p id="viewOccurrenceDescription">Descrição da Ocorrência</p>
+                    </div>
+
+                    <!-- Endereço da Ocorrência -->
+                    <div class="modal-section">
+                        <h6>Endereço da Ocorrência</h6>
+                        <p><strong>Rua:</strong> <span id="viewOccurrenceAddressStreet">Rua</span></p>
+                        <p><strong>Número:</strong> <span id="viewOccurrenceAddressNumber">Número</span></p>
+                        <p><strong>Complemento:</strong> <span id="viewOccurrenceAddressComplement">Complemento</span></p>
+                        <p><strong>Bairro:</strong> <span id="viewOccurrenceAddressNeighborhood">Bairro</span></p>
+                        <p><strong>Cidade:</strong> <span id="viewOccurrenceAddressCity">Cidade</span></p>
+                        <p><strong>Estado:</strong> <span id="viewOccurrenceAddressState">Estado</span></p>
+                        <p><strong>CEP:</strong> <span id="viewOccurrenceAddressZipcode">CEP</span></p>
+                    </div>
+
+                    <!-- Comentários -->
+                    <div class="modal-section">
+                        <h6>Comentários</h6>
+                        <div id="viewOccurrenceComments">
+                            <!-- Comentários serão inseridos aqui -->
+                        </div>
+                    </div>
+
+                    <!-- Mídias Anexadas -->
+                    <div class="modal-section">
+                        <h6>Mídias Anexadas</h6>
+                        <div id="viewOccurrenceMedia">
+                            <!-- Mídias serão inseridas aqui -->
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

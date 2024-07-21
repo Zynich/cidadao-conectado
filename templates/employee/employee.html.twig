@@ -2,18 +2,17 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/filterDashboard.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/tableDashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/tableEmployee.css') }}">
 {% endblock %}
 
 {% block admin_content %}
 {# {{ dump(occurrences) }} #}
 
 
-<section class="content" data-page="OCORRÊNCIAS EM ANDAMENTO">
+<section class="content" data-page="CADASTRO DE FUNCIONÁRIOS">
     <!-- Filtros de Pesquisa -->
     <div class="filter-box collapse" id="filterSection">
-        <div class="filter-content filter-controls occurrence-controls">
+        <div class="filter-content filter-controls employee-controls">
             <div class="row mb-4">
                 <div class="col-md-3">
                     <label for="statusFilter">Status:</label>
@@ -64,6 +63,14 @@
                     <input type="date" id="endSlaDueDate" class="form-control" placeholder="Data Final">
                 </div>
             </div>
+            <div class="col-md-12 text-center">
+                <button class="btn btn-danger" type="button" data-toggle="collapse" aria-expanded="false">
+                    Limpar Filtro
+                </button>
+                <button class="btn btn-dark" type="button" data-toggle="collapse" aria-expanded="false">
+                    Aplicar Filtro
+                </button>
+            </div>
         </div>
     </div>
 
@@ -71,23 +78,24 @@
         <!-- Botão de Filtros -->
         <div class="row mb-4">
             <div class="col-md-4">
-                <input type="text" id="occurrenceSearch" class="form-control" placeholder="Pesquisar..." aria-controls="occurrencesTable">
+                <input type="text" id="employeeSearch" class="form-control" placeholder="Pesquisar..." aria-controls="employeeTable">
             </div>
             <div class="col-md-4 text-left">
-                <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#filterSection" aria-expanded="false" aria-controls="filterSection">
+                {# Desabilitado enquanto não configuro os filtros #}
+                {# <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#filterSection" aria-expanded="false" aria-controls="filterSection">
                     <i class="fas fa-filter fa-chevron-down"></i>
-                </button>
+                </button> #}
             </div>
             <div class="col-md-4 text-right">
-                <a href="{{ path('occurrences_closed') }}" class="btn btn-dark">
-                    Ocorrências Encerradas
-                </a>
+                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalEmployee">
+                    Cadastrar Funcionário
+                </button>
             </div>
         </div>
 
         <!-- Tabela de Ocorrências -->
-        <div class="table-responsive tableOccurrenceContainer">
-            <table id="occurrencesTable" class="table table-striped table-bordered" style="width:100%">
+        <div class="table-responsive tableEmployeeContainer">
+            <table id="employeeTable" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
                     <!-- Adicionado via javascript -->
@@ -100,93 +108,67 @@
         </div>
     </div>
 </section>
+    <!-- Incluir o modal cadastro funcionário -->
+    {% include 'employee/modalEmployee.html.twig' %}
+    <!-- Incluir o modal de exclusão -->
+    {% include 'employee/modalDeleteEmployee.html.twig' %}
+
 {% endblock %}
 
 {% block javascripts %}
 {{ parent() }}
 <script>
-    var occurrencesTable;
-    var occurrencesTableData = [
+    var employeeTable;
+    var employeeTableData = [
         {
             id: 1,
-            occurrenceCode: "CAN012024",
-            title: "Ocorrência Teste 1",
-            status: "Aberta",
-            priority: "Alta",
-            occurrenceDate: "2024-01-01 12:00",
-            occurrenceType: "Tipo 1",
-            responsible: "Responsável 1",
-            slaExpiration: "2024-01-15 12:00",
-            address: "Rua Teste, 123, Bairro Teste, Cidade Teste, Estado Teste, 12345-678, Complemento Teste",
-            description: "Descrição Teste 1",
-            lastUpdate: "2024-01-01 12:30"
+            name: "Vinicius",
+            email: "vinicius@gmail.com",
+            department: "Administrativo",
+            phone: "51 98918-4949",
         },
         {
             id: 2,
-            occurrenceCode: "CAN022024",
-            title: "Ocorrência Teste 2",
-            status: "Em Progresso",
-            priority: "Média",
-            occurrenceDate: "2024-02-01 12:00",
-            occurrenceType: "Tipo 2",
-            responsible: "Responsável 2",
-            slaExpiration: "2024-02-15 12:00",
-            address: "Rua Teste, 124, Bairro Teste, Cidade Teste, Estado Teste, 12345-678, Complemento Teste",
-            description: "Descrição Teste 2",
-            lastUpdate: "2024-02-01 12:30"
+            name: "Fernanda",
+            email: "fernanda@gmail.com",
+            department: "Administrativo",
+            phone: "51 98999-5144",
         },
         {
             id: 3,
-            occurrenceCode: "CAN032024",
-            title: "Ocorrência Teste 3",
-            status: "Concluído",
-            priority: "Baixa",
-            occurrenceDate: "2024-03-01 12:00",
-            occurrenceType: "Tipo 3",
-            responsible: "Responsável 3",
-            slaExpiration: "2024-03-15 12:00",
-            address: "Rua Teste, 125, Bairro Teste, Cidade Teste, Estado Teste, 12345-678, Complemento Teste",
-            description: "Descrição Teste 3",
-            lastUpdate: "2024-03-01 12:30"
+            name: "Carlos",
+            email: "carlos@gmail.com",
+            department: "Administrativo",
+            phone: "Sem Registro",
         }
     ];
 
-function setupOccurrencesDataTable() {
-    if ($.fn.DataTable.isDataTable('#occurrencesTable')) {
-        $('#occurrencesTable').DataTable().clear().destroy();
+function setupEmployeeDataTable() {
+    if ($.fn.DataTable.isDataTable('#employeeTable')) {
+        $('#employeeTable').DataTable().clear().destroy();
     }
 
-    occurrencesTable = $('#occurrencesTable').DataTable({
+    employeeTable = $('#employeeTable').DataTable({
         searching: true,
         paging: false,
         info: false,
-        data: occurrencesTableData,
+        data: employeeTableData,
         columns: [
             { data: 'id', title: 'ID', visible: false },
-            { data: 'occurrenceCode', title: 'Código' },
-            { data: 'title', title: 'Título' },
-            { data: 'status', title: 'Status' },
-            { data: 'priority', title: 'Prioridade' },
-            { data: 'occurrenceDate', title: 'Data da Ocorrência' },
-            { data: 'occurrenceType', title: 'Tipo' },
-            { data: 'responsible', title: 'Responsável' },
-            { data: 'slaExpiration', title: 'SLA' },
-            { data: 'address', title: 'Endereço' },
-            { data: 'description', title: 'Descrição' },
-            { data: 'lastUpdate', title: 'Última Atualização' },
+            { data: 'name', title: 'Nome' },
+            { data: 'email', title: 'E-mail' },
+            { data: 'department', title: 'Departamento' },
+            { data: 'phone', title: 'Telefone' },
             { title: 'Ações' }
         ],
         columnDefs: [
             {
                 targets: -1, // Última coluna (Ações)
                 render: function (data, type, row, meta) {
-                    var occurrencesId = row.id; 
+                    var employeeId = row.id; 
                     return `
-                        <button class="btn-action occurrences-view" title="Visualizar" data-occurrences-id="${occurrencesId}"><i class="fa fa-eye"></i></button>
-                        <button class="btn-action occurrences-edit" title="Editar" data-occurrences-id="${occurrencesId}"><i class="fa fa-pen"></i></button>
-                        <button class="btn-action occurrences-midia" title="Midia" data-occurrences-id="${occurrencesId}"><i class="fa fa-photo-video"></i></button>
-                        <button class="btn-action occurrences-pdf" title="Exportar Pdf" data-occurrences-id="${occurrencesId}"><i class="fa fa-file-pdf"></i></button>
-                        <button class="btn-action occurrences-close" title="Encerrar Ocorrência" data-occurrences-id="${occurrencesId}"><i class="fa fa-lock"></i></button>
+                        <button class="btn-action employee-edit" title="Editar" data-employee-id="${employeeId}" onclick="modalEmployee(${employeeId})"><i class="fa fa-pen"></i></button>
+                        <button class="btn-action employee-delete" title="Deletar" data-employee-id="${employeeId}" onclick="showDeleteModal(${employeeId})"><i class="fa fa-trash"></i></button>
                     `;
                 }
             }
@@ -207,17 +189,17 @@ function setupOccurrencesDataTable() {
 
 function adjustTable() {
     setTimeout(function() {
-        occurrencesTable.columns.adjust().draw();
+        employeeTable.columns.adjust().draw();
     }, 100);
 }
 
     $(document).ready(function() {
         // Inicialização do DataTables
-        setupOccurrencesDataTable();
+        setupEmployeeDataTable();
 
         // Filtro de pesquisa personalizado
-        $('#occurrenceSearch').on('keyup', function() {
-            occurrencesTable.search(this.value).draw();
+        $('#employeeSearch').on('keyup', function() {
+            employeeTable.search(this.value).draw();
         });
 
         // Exibição dos filtros ao clicar no botão
