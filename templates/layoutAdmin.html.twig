@@ -29,6 +29,13 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownGestores">
                             <a class="dropdown-item" href="{{ path('employee_register') }}">Funcionários</a>
+                            <div class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">Tipos de Ocorrência</a>
+                                <div class="dropdown-menu dropdown-left">
+                                    <a class="dropdown-item" href="{{ path('occurrence_type_register') }}">Tipos</a>
+                                    <a class="dropdown-item" href="{{ path('occurrence_subtype_register') }}">Subtipos</a>
+                                </div>
+                            </div>
                         </div>
                     </li>
                     <li class="nav-item dropdown dropdown-hover">

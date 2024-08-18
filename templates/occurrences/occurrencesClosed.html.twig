@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block admin_content %}
-{# {{ dump(occurrences) }} #}
+{{ dump(occurrencesData) }}
 
 
 <section class="content" data-page="OCORRÊNCIAS ENCERRADAS">
@@ -82,6 +82,8 @@
         </div>
     </div>
 </section>
+{% include 'occurrences/ModalReopenConfirm.html.twig' %}
+
 {% endblock %}
 
 {% block javascripts %}
@@ -89,187 +91,30 @@
 <script>
     var occurrencesTable;
     var occurrencesTableData = [
-        {
-            id: 1,
-            occurrenceCode: "CAN012024",
-            title: "Ocorrência Teste 1",
-            status: "Aberta",
-            occurrenceDate: "2024-01-01 12:00",
-            occurrenceType: "Tipo 1",
-            lastUpdate: "2024-01-01 12:30"
-        },
-        {
-            id: 2,
-            occurrenceCode: "CAN022024",
-            title: "Ocorrência Teste 2",
-            status: "Em Progresso",
-            occurrenceDate: "2024-02-01 12:00",
-            occurrenceType: "Tipo 2",
-            lastUpdate: "2024-02-01 12:30"
-        },
-        {
-            id: 3,
-            occurrenceCode: "CAN032024",
-            title: "Ocorrência Teste 3",
-            status: "Concluído",
-            occurrenceDate: "2024-03-01 12:00",
-            occurrenceType: "Tipo 3",
-            lastUpdate: "2024-03-01 12:30"
-        },
-         {
-            id: 3,
-            occurrenceCode: "CAN032024",
-            title: "Ocorrência Teste 3",
-            status: "Concluído",
-            occurrenceDate: "2024-03-01 12:00",
-            occurrenceType: "Tipo 3",
-            lastUpdate: "2024-03-01 12:30"
-        },
-         {
-            id: 3,
-            occurrenceCode: "CAN032024",
-            title: "Ocorrência Teste 3",
-            status: "Concluído",
-            occurrenceDate: "2024-03-01 12:00",
-            occurrenceType: "Tipo 3",
-            lastUpdate: "2024-03-01 12:30"
-        },
-         {
-            id: 3,
-            occurrenceCode: "CAN032024",
-            title: "Ocorrência Teste 3",
-            status: "Concluído",
-            occurrenceDate: "2024-03-01 12:00",
-            occurrenceType: "Tipo 3",
-            lastUpdate: "2024-03-01 12:30"
-        },
-         {
-            id: 3,
-            occurrenceCode: "CAN032024",
-            title: "Ocorrência Teste 3",
-            status: "Concluído",
-            occurrenceDate: "2024-03-01 12:00",
-            occurrenceType: "Tipo 3",
-            lastUpdate: "2024-03-01 12:30"
-        },
-         {
-            id: 3,
-            occurrenceCode: "CAN032024",
-            title: "Ocorrência Teste 3",
-            status: "Concluído",
-            occurrenceDate: "2024-03-01 12:00",
-            occurrenceType: "Tipo 3",
-            lastUpdate: "2024-03-01 12:30"
-        },
-         {
-            id: 3,
-            occurrenceCode: "CAN032024",
-            title: "Ocorrência Teste 3",
-            status: "Concluído",
-            occurrenceDate: "2024-03-01 12:00",
-            occurrenceType: "Tipo 3",
-            lastUpdate: "2024-03-01 12:30"
-        },
-         {
-            id: 3,
-            occurrenceCode: "CAN032024",
-            title: "Ocorrência Teste 3",
-            status: "Concluído",
-            occurrenceDate: "2024-03-01 12:00",
-            occurrenceType: "Tipo 3",
-            lastUpdate: "2024-03-01 12:30"
-        },
-         {
-            id: 3,
-            occurrenceCode: "CAN032024",
-            title: "Ocorrência Teste 3",
-            status: "Concluído",
-            occurrenceDate: "2024-03-01 12:00",
-            occurrenceType: "Tipo 3",
-            lastUpdate: "2024-03-01 12:30"
-        },
-         {
-            id: 3,
-            occurrenceCode: "CAN032024",
-            title: "Ocorrência Teste 3",
-            status: "Concluído",
-            occurrenceDate: "2024-03-01 12:00",
-            occurrenceType: "Tipo 3",
-            lastUpdate: "2024-03-01 12:30"
-        },
-         {
-            id: 3,
-            occurrenceCode: "CAN032024",
-            title: "Ocorrência Teste 3",
-            status: "Concluído",
-            occurrenceDate: "2024-03-01 12:00",
-            occurrenceType: "Tipo 3",
-            lastUpdate: "2024-03-01 12:30"
-        },
-         {
-            id: 3,
-            occurrenceCode: "CAN032024",
-            title: "Ocorrência Teste 3",
-            status: "Concluído",
-            occurrenceDate: "2024-03-01 12:00",
-            occurrenceType: "Tipo 3",
-            lastUpdate: "2024-03-01 12:30"
-        },
-         {
-            id: 3,
-            occurrenceCode: "CAN032024",
-            title: "Ocorrência Teste 3",
-            status: "Concluído",
-            occurrenceDate: "2024-03-01 12:00",
-            occurrenceType: "Tipo 3",
-            lastUpdate: "2024-03-01 12:30"
-        },
-        {
-            id: 3,
-            occurrenceCode: "CAN032024",
-            title: "Ocorrência Teste 3",
-            status: "Concluído",
-            occurrenceDate: "2024-03-01 12:00",
-            occurrenceType: "Tipo 3",
-            lastUpdate: "2024-03-01 12:30"
-        },
-        {
-            id: 3,
-            occurrenceCode: "CAN032024",
-            title: "Ocorrência Teste 3",
-            status: "Concluído",
-            occurrenceDate: "2024-03-01 12:00",
-            occurrenceType: "Tipo 3",
-            lastUpdate: "2024-03-01 12:30"
-        },
-        {
-            id: 3,
-            occurrenceCode: "CAN032024",
-            title: "Ocorrência Teste 3",
-            status: "Concluído",
-            occurrenceDate: "2024-03-01 12:00",
-            occurrenceType: "Tipo 3",
-            lastUpdate: "2024-03-01 12:30"
-        },
-        {
-            id: 3,
-            occurrenceCode: "CAN032024",
-            title: "Ocorrência Teste 3",
-            status: "Concluído",
-            occurrenceDate: "2024-03-01 12:00",
-            occurrenceType: "Tipo 3",
-            lastUpdate: "2024-03-01 12:30"
-        },
-        {
-            id: 3,
-            occurrenceCode: "CAN032024",
-            title: "Ocorrência Teste 3",
-            status: "Concluído",
-            occurrenceDate: "2024-03-01 12:00",
-            occurrenceType: "Tipo 3",
-            lastUpdate: "2024-03-01 12:30"
-        }
+        {% for occurrenceData in occurrencesData %}
+            {
+               id: {{ occurrenceData.id }},
+               occurrenceCode: "{{ occurrenceData.occurrenceCode }}",
+               title: "{{ occurrenceData.title }}",
+               status: "{{ occurrenceData.status }}",
+               occurrenceDate: "{{ occurrenceData.occurredDate ? occurrenceData.occurredDate|date('Y-m-d') : '' }}",
+               occurrenceType: "{{ occurrenceData.occurrenceTypeName }}",
+               closedDate: "{{ occurrenceData.closedDate ? occurrenceData.closedDate|date('Y-m-d') : '' }}",
+            },
+        {% endfor %}
     ];
+function formatDate(date) {
+    if (!date) return 'Não definido';
+   
+    const d = new Date(date);
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, '0'); // Mês é zero-indexado
+    const day = String(d.getDate()).padStart(2, '0');
+    const hours = String(d.getHours()).padStart(2, '0');
+    const minutes = String(d.getMinutes()).padStart(2, '0');
+
+    return `${day}/${month}/${year}`;
+}   
 
 function setupOccurrencesDataTable() {
     if ($.fn.DataTable.isDataTable('#occurrencesTable')) {
@@ -288,17 +133,29 @@ function setupOccurrencesDataTable() {
             { data: 'status', title: 'Status' },
             { data: 'occurrenceDate', title: 'Data da Ocorrência' },
             { data: 'occurrenceType', title: 'Tipo' },
-            { data: 'lastUpdate', title: 'Última Atualização' },
+            { data: 'closedDate', title: 'Data Encerramento' },
             { title: 'Ações' }
         ],
         columnDefs: [
+            {
+                targets: 4, // Índice da coluna "Data da Ocorrência"
+                render: function (data, type, row, meta) {
+                    return formatDate(data);
+                }
+            },
+            {
+                targets: 6, // Índice da coluna "Data Encerramento"
+                render: function (data, type, row, meta) {
+                    return formatDate(data);
+                }
+            },
             {
                 targets: -1, // Última coluna (Ações)
                 render: function (data, type, row, meta) {
                     var occurrenceId = row.id; 
                     return `
                         <button class="btn-action occurrence-view" title="Visualizar" data-occurrence-id="${occurrenceId}"><i class="fa fa-eye"></i></button>
-                        <button class="btn-action occurrence-open" title="Reabrir ocorrência" data-occurrence-id="${occurrenceId}"><i class="fa fa-unlock"></i></button>
+                        <button class="btn-action occurrence-open" title="Reabrir ocorrência" data-occurrence-id="${occurrenceId}" data-bs-toggle="modal" data-bs-target="#modalReopenConfirm"><i class="fa fa-unlock"></i></button>
                     `;
                 }
             }
@@ -323,26 +180,82 @@ function adjustTable() {
     }, 100);
 }
 
-    $(document).ready(function() {
-        // Inicialização do DataTables
-        setupOccurrencesDataTable();
+$(document).ready(function() {
+    // Inicialização do DataTables
+    setupOccurrencesDataTable();
 
-        // Filtro de pesquisa personalizado
-        $('#occurrenceSearch').on('keyup', function() {
-            occurrencesTable.search(this.value).draw();
-        });
+    // Filtro de pesquisa personalizado
+    $('#occurrenceSearch').on('keyup', function() {
+        occurrencesTable.search(this.value).draw();
+    });
 
-        // Exibição dos filtros ao clicar no botão
-        $('#filterSection').on('shown.bs.collapse', function () {
-            $('.btn-filter').addClass('active'); // Adiciona classe de destaque ao botão de filtro
-            $('.filter-box').slideDown(); // Animação de slide para exibir os filtros
-        });
+    // Exibição dos filtros ao clicar no botão
+    $('#filterSection').on('shown.bs.collapse', function () {
+        $('.btn-filter').addClass('active'); // Adiciona classe de destaque ao botão de filtro
+        $('.filter-box').slideDown(); // Animação de slide para exibir os filtros
+    });
 
-        // Ocultação dos filtros ao fechar o modal
-        $('#filterSection').on('hidden.bs.collapse', function () {
-            $('.btn-filter').removeClass('active'); // Remove classe de destaque ao fechar os filtros
-            $('.filter-box').slideUp(); // Animação de slide para ocultar os filtros
+    // Ocultação dos filtros ao fechar o modal
+    $('#filterSection').on('hidden.bs.collapse', function () {
+        $('.btn-filter').removeClass('active'); // Remove classe de destaque ao fechar os filtros
+        $('.filter-box').slideUp(); // Animação de slide para ocultar os filtros
+    });
+
+
+    // Reabrir Ocorrência
+    $(document).on('click', '.occurrence-open', function () {
+        var occurrenceId = $(this).data('occurrence-id');
+        $('#modalReopenConfirm').data('occurrence-id', occurrenceId).modal('show');
+    });
+
+    $('#confirmReopen').on('click', function() {
+        var occurrenceId = $('#modalReopenConfirm').data('occurrence-id');
+
+        $.ajax({
+            url: '/occurrence-reopen', 
+            type: 'POST',
+            data: JSON.stringify({ occurrenceId: occurrenceId }),
+            contentType: 'application/json',
+            success: function(response) {
+                $(document).Toasts('create', {
+                    icon: 'fas fa-check',
+                    title: 'Ocorrência reaberta com sucesso',
+                    class: 'bg-success mt-2 mr-2',
+                    autohide: true,
+                    delay: 5000,
+                    autoremove: false
+                });
+                $('#modalReopenConfirm').modal('hide');
+
+                occurrencesTableData = occurrencesTableData.filter(function(occurrence) {
+                    console.log("dentro da tabela",occurrence)
+                    return occurrence.id != occurrenceId; 
+                });
+
+                occurrencesTable.rows().every(function(rowIdx, tableLoop, rowLoop) {
+                    console.log("dentro de this data",this.data()[0])
+                    if (this.data()[0] == occurrenceId) {
+                        this.remove();
+                    }
+                });
+
+                occurrencesTable.draw();
+                setupOccurrencesDataTable();
+            },
+            error: function(error) {
+                console.error(error);
+                $(document).Toasts('create', {
+                    icon: 'fas fa-times',
+                    title: 'Erro ao reabrir ocorrência',
+                    class: 'bg-danger mt-2 mr-2',
+                    autohide: true,
+                    delay: 5000,
+                    autoremove: false
+                });
+                $('#modalReopenConfirm').modal('hide');
+            }
         });
     });
+});
 </script>
 {% endblock %}

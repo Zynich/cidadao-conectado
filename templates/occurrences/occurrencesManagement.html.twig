@@ -6,12 +6,12 @@
 {% endblock %}
 
 {% block admin_content %}
-{# {{ dump(occurrences) }} #}
+{# {{ dump(occurrencesData) }} #}
 
 
 <section class="content" data-page="OCORRÊNCIAS EM ANDAMENTO">
     <!-- Filtros de Pesquisa -->
-    {# <div class="filter-box collapse" id="filterSection">
+    <div class="filter-box collapse" id="filterSection">
         <div class="filter-content filter-controls occurrence-controls">
             <div class="row mb-4">
                 <div class="col-md-3">
@@ -72,7 +72,7 @@
                 </button>
             </div>
         </div>
-    </div> #}
+    </div>
 
     <div class="container-fluid">
         <!-- Botão de Filtros -->
@@ -209,46 +209,35 @@
 
     var occurrencesTable;
     var occurrencesTableData = [
-        {
-            id: 1,
-            occurrenceCode: "CAN012024",
-            title: "Ocorrência Teste 1",
-            status: "Aberta",
-            priority: "Alta",
-            occurrenceDate: "2024-01-01 12:00",
-            occurrenceType: "Tipo 1",
-            slaExpiration: "2024-01-15 12:00",
-            address: "Rua Teste, 123, Bairro Teste, Cidade Teste, Estado Teste, 12345-678, Complemento Teste",
-            description: "Descrição Teste 1",
-            lastUpdate: "2024-01-01 12:30"
-        },
-        {
-            id: 2,
-            occurrenceCode: "CAN022024",
-            title: "Ocorrência Teste 2",
-            status: "Em Progresso",
-            priority: "Média",
-            occurrenceDate: "2024-02-01 12:00",
-            occurrenceType: "Tipo 2",
-            slaExpiration: "2024-02-15 12:00",
-            address: "Rua Teste, 124, Bairro Teste, Cidade Teste, Estado Teste, 12345-678, Complemento Teste",
-            description: "Descrição Teste 2",
-            lastUpdate: "2024-02-01 12:30"
-        },
-        {
-            id: 3,
-            occurrenceCode: "CAN032024",
-            title: "Ocorrência Teste 3",
-            status: "Concluído",
-            priority: "Baixa",
-            occurrenceDate: "2024-03-01 12:00",
-            occurrenceType: "Tipo 3",
-            slaExpiration: "2024-03-15 12:00",
-            address: "Rua Teste, 125, Bairro Teste, Cidade Teste, Estado Teste, 12345-678, Complemento Teste",
-            description: "Descrição Teste 3",
-            lastUpdate: "2024-03-01 12:30"
-        }
+        {% for occurrenceData in occurrencesData %}
+            {
+               id: {{ occurrenceData.id }},
+               occurrenceCode: "{{ occurrenceData.occurrenceCode }}",
+               title: "{{ occurrenceData.title }}",
+               status: "{{ occurrenceData.status }}",
+               priority: "{{ occurrenceData.priority }}",
+               occurrenceDate: "{{ occurrenceData.occurredDate ? occurrenceData.occurredDate|date('Y-m-d') : '' }}",
+               occurrenceType: "{{ occurrenceData.occurrenceTypeName }}",
+               description: "{{ occurrenceData.description }}",
+               slaExpiration: "{{ occurrenceData.slaDueDate ? occurrenceData.slaDueDate|date('Y-m-d') : '' }}",
+               address: "{{ occurrenceData.fullAddress }}",
+            },
+        {% endfor %}
     ];
+
+function formatDate(date) {
+    if (!date) return 'Não definido';
+   
+    const d = new Date(date);
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, '0'); // Mês é zero-indexado
+    const day = String(d.getDate()).padStart(2, '0');
+    const hours = String(d.getHours()).padStart(2, '0');
+    const minutes = String(d.getMinutes()).padStart(2, '0');
+
+    return `${day}/${month}/${year}`;
+}
+
 
 function setupOccurrencesDataTable() {
     if ($.fn.DataTable.isDataTable('#occurrencesTable')) {
@@ -268,16 +257,29 @@ function setupOccurrencesDataTable() {
             { data: 'priority', title: 'Prioridade' },
             { data: 'occurrenceDate', title: 'Data da Ocorrência' },
             { data: 'occurrenceType', title: 'Tipo' },
+            { data: 'description', title: 'Descrição' },
             { data: 'slaExpiration', title: 'SLA' },
             { data: 'address', title: 'Endereço' },
-            { data: 'description', title: 'Descrição' },
-            { data: 'lastUpdate', title: 'Última Atualização' },
             { title: 'Ações' }
         ],
         columnDefs: [
             {
+                targets: 5, // Índice da coluna "Data da Ocorrência"
+                render: function (data, type, row, meta) {
+                    return formatDate(data);
+                }
+            },
+            {
+                targets: 8, // Índice da coluna "Data da Ocorrência"
+                render: function (data, type, row, meta) {
+                    return formatDate(data);
+                }
+            },
+            {
                 targets: -1, // Última coluna (Ações)
                 render: function (data, type, row, meta) {
+                    console.log("vem da data",data);
+                    console.log("vem do row",row);
                     var occurrenceId = row.id; 
                     return `
                         <button class="btn-action occurrence-view" title="Visualizar" data-occurrence-id="${occurrenceId}"><i class="fa fa-eye"></i></button>

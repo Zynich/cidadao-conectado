@@ -1,0 +1,132 @@
+{% extends 'layoutAdmin.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/tableOccurrenceSubtype.css') }}">
+{% endblock %}
+
+{% block admin_content %}
+{# {{ dump(occurrences) }} #}
+
+
+<section class="content" data-page="CADASTRO DE SUBTIPOS DE OCORRÊNCIA">
+    <div class="container-fluid">
+        <!-- Botão de Filtros -->
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <input type="text" id="occurrenceSubtypeSearch" class="form-control" placeholder="Pesquisar..." aria-controls="occurrenceSubtypeTable">
+            </div>
+            <div class="col-md-8 text-right">
+                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalOccurrenceSubtype">
+                    Cadastrar Subtipo
+                </button>
+            </div>
+        </div>
+
+        <!-- Tabela de Ocorrências -->
+        <div class="table-responsive tableOccurrenceSubtypeContainer">
+            <table id="occurrenceSubtypeTable" class="table table-striped table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                    <!-- Adicionado via javascript -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Adicionado via javascript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+    <!-- Incluir o modal cadastro funcionário -->
+    {% include 'occurrenceType/subtype/modalOccurrenceSubtype.html.twig' %}
+    <!-- Incluir o modal de exclusão -->
+    {% include 'occurrenceType/subtype/modalDeleteOccurrenceSubtype.html.twig' %}
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script>
+    var occurrenceSubtypeTable;
+    var occurrenceSubtypeTableData = [
+        {
+            id: 1,
+            name: "Vinicius",
+            description: "vinicius@gmail.com",
+            type: "Administrativo",
+        },
+        {
+            id: 2,
+            name: "Fernanda",
+            description: "vinicius@gmail.com",
+            type: "Administrativo",
+        },
+        {
+            id: 3,
+            name: "Carlos",
+            description: "vinicius@gmail.com",
+            type: "Administrativo",
+        }
+    ];
+
+function setupOccurrenceSubtypeDataTable() {
+    if ($.fn.DataTable.isDataTable('#occurrenceSubtypeTable')) {
+        $('#occurrenceSubtypeTable').DataTable().clear().destroy();
+    }
+
+    occurrenceSubtypeTable = $('#occurrenceSubtypeTable').DataTable({
+        searching: true,
+        paging: false,
+        info: false,
+        data: occurrenceSubtypeTableData,
+        columns: [
+            { data: 'id', title: 'ID', visible: false },
+            { data: 'name', title: 'Nome' },
+            { data: 'description', title: 'descrição' },
+            { data: 'type', title: 'Tipo' },
+            { title: 'Ações' }
+        ],
+        columnDefs: [
+            {
+                targets: -1, // Última coluna (Ações)
+                render: function (data, type, row, meta) {
+                    var occurrenceSubtypeId = row.id; 
+                    return `
+                        <button class="btn-action occurrenceSubtype-edit" title="Editar" data-occurrenceSubtype-id="${occurrenceSubtypeId}" onclick="modalOccurrenceSubtype(${occurrenceSubtypeId})"><i class="fa fa-pen"></i></button>
+                        <button class="btn-action occurrenceSubtype-delete" title="Deletar" data-occurrenceSubtype-id="${occurrenceSubtypeId}" onclick="showDeleteModal(${occurrenceSubtypeId})"><i class="fa fa-trash"></i></button>
+                    `;
+                }
+            }
+        ],
+        lengthChange: false,
+        ordering: true,
+        dom: 'lrtip',
+        scrollX: true,
+        fixedHeader: true,
+        language: {
+            zeroRecords: "Nenhum registro correspondente encontrado",
+            emptyTable: "Nenhum dado disponível na tabela"
+        }
+    });
+
+    adjustTable();
+}
+
+function adjustTable() {
+    setTimeout(function() {
+        occurrenceSubtypeTable.columns.adjust().draw();
+    }, 100);
+}
+
+    $(document).ready(function() {
+        // Inicialização do DataTables
+        setupOccurrenceSubtypeDataTable();
+
+        // Filtro de pesquisa personalizado
+        $('#occurrenceSubtypeSearch').on('keyup', function() {
+            occurrenceSubtypeTable.search(this.value).draw();
+        });
+    });
+</script>
+{% endblock %}

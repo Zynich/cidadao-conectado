@@ -38,15 +38,26 @@ occurrences_closed:
     path: /manager/occurrences/closed
     controller: App\Controller\OccurrencesClosedController::index
 
+occurrences_reopen:
+    path: /occurrence-reopen
+    controller: App\Controller\OccurrencesClosedController::reopenOccurrence
+
 # register
 occurrence_register:
-    path: /manager/occurrence/register
+    path: /manager/occurrence/newOccurrence
     controller: App\Controller\OccurrenceRegisterController::index
 
 # employee
 employee_register:
-    path: /manager/employee/register
+    path: /manager/employee/management
     controller: App\Controller\EmployeeController::index
 
+# Type and Subtype Occurrence
+occurrence_type_register:
+    path: /manager/occurrence/type/management
+    controller: App\Controller\OccurrenceTypeController::index
 
+occurrence_subtype_register:
+    path: /manager/occurrence/subtype/management
+    controller: App\Controller\OccurrenceSubtypeController::index
 

@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\Occurrence;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\ORMException;
 
 /**
  * @extends ServiceEntityRepository<Occurrence>
@@ -21,28 +23,28 @@ class OccurrenceRepository extends ServiceEntityRepository
         parent::__construct($registry, Occurrence::class);
     }
 
-//    /**
-//     * @return Occurrence[] Returns an array of Occurrence objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('o')
-//            ->andWhere('o.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('o.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findOpenOccurrencesWithAddress()
+    {
+        $qb = $this->createQueryBuilder('o')
+            ->select('o.id', 'o.occurrenceCode', 'o.title', 'o.description', 'o.status', 'o.priority', 'o.occurredDate', 'o.slaDueDate',
+                     "CONCAT(a.street, ', ', a.number, ', ', a.neighborhood, ', ', a.city, ', ', a.state, ', ', a.cep, ' ', a.complement) AS fullAddress",
+                     'ot.name AS occurrenceTypeName') 
+            ->innerJoin('App\Entity\OccurrencesAddress', 'oa', 'WITH', 'oa.occurrence = o.id')
+            ->innerJoin('oa.address', 'a')
+            ->innerJoin('o.typeOccurrence', 'ot') 
+            ->where('o.occurrenceClosed = 0');
 
-//    public function findOneBySomeField($value): ?Occurrence
-//    {
-//        return $this->createQueryBuilder('o')
-//            ->andWhere('o.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findClosedOccurrences()
+    {
+        $qb = $this->createQueryBuilder('o')
+            ->select('o.id', 'o.occurrenceCode', 'o.title', 'o.status', 'o.occurredDate','o.closedDate',
+                     'ot.name AS occurrenceTypeName') 
+            ->innerJoin('o.typeOccurrence', 'ot') 
+            ->where('o.occurrenceClosed = 1');
+
+        return $qb->getQuery()->getResult();
+    }
 }

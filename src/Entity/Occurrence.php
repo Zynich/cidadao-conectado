@@ -66,6 +66,9 @@ class Occurrence
     #[ORM\Column]
     private ?bool $occurrenceClosed = null;
 
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $closedDate = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -271,6 +274,18 @@ class Occurrence
     public function setOccurrenceClosed(bool $occurrenceClosed): static
     {
         $this->occurrenceClosed = $occurrenceClosed;
+
+        return $this;
+    }
+
+    public function getClosedDate(): ?\DateTimeInterface
+    {
+        return $this->closedDate;
+    }
+
+    public function setClosedDate(?\DateTimeInterface $closedDate): static
+    {
+        $this->closedDate = $closedDate;
 
         return $this;
     }

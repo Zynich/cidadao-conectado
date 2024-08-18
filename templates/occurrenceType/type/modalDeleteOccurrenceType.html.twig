@@ -1,0 +1,36 @@
+<!-- templates/occurrenceType/type/modalDeleteType.html.twig -->
+<div class="modal fade" id="modalDeleteOccurrenceType" tabindex="-1" role="dialog" aria-labelledby="modalDeleteOccurrenceTypeLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalDeleteOccurrenceTypeLabel">Excluir Subtipo de Ocorrência</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Tem certeza que deseja excluir este Tipo de Ocorrência? Todos os subtipos vinculados serão excluídos e esta ação não pode ser desfeita.</p>
+        <input type="hidden" id="occurrenceTypeIdToDelete">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" onclick="deleteOccurrenceType()">Excluir</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function showDeleteModal(occurrenceTypeId) {
+    $('#occurrenceTypeIdToDelete').val(occurrenceTypeId);
+    $('#modalDeleteOccurrenceType').modal('show');
+}
+
+function deleteOccurrenceType() {
+    const occurrenceTypeId = $('#occurrenceTypeIdToDelete').val();
+    // Adicione aqui a lógica para excluir o tipo de ocorrência (ex: chamada AJAX para deletar o tipo)
+    alert('Tipo de Ocorrência com ID ' + occurrenceTypeId + ' excluído!');
+    $('#modalDeleteOccurrenceType').modal('hide');
+    // Atualize a página ou a tabela de tipo conforme necessário
+}
+</script>

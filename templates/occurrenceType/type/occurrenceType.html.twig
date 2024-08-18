@@ -1,0 +1,128 @@
+{% extends 'layoutAdmin.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/tableOccurrenceType.css') }}">
+{% endblock %}
+
+{% block admin_content %}
+{# {{ dump(occurrences) }} #}
+
+
+<section class="content" data-page="CADASTRO DE TIPOS DE OCORRÊNCIA">
+    <div class="container-fluid">
+        <!-- Botão de Filtros -->
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <input type="text" id="occurrenceTypeSearch" class="form-control" placeholder="Pesquisar..." aria-controls="occurrenceTypeTable">
+            </div>
+            <div class="col-md-8 text-right">
+                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalOccurrenceType">
+                    Cadastrar Tipo
+                </button>
+            </div>
+        </div>
+
+        <!-- Tabela de Ocorrências -->
+        <div class="table-responsive tableOccurrenceTypeContainer">
+            <table id="occurrenceTypeTable" class="table table-striped table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                    <!-- Adicionado via javascript -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Adicionado via javascript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+    <!-- Incluir o modal cadastro funcionário -->
+    {% include 'occurrenceType/type/modalOccurrenceType.html.twig' %}
+    <!-- Incluir o modal de exclusão -->
+    {% include 'occurrenceType/type/modalDeleteOccurrenceType.html.twig' %}
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script>
+    var occurrenceTypeTable;
+    var occurrenceTypeTableData = [
+        {
+            id: 1,
+            name: "Reclamação",
+            description: "Reclamações Gerais",
+        },
+        {
+            id: 2,
+            name: "Sugestões",
+            description: "Novas funcionalidades",
+        },
+        {
+            id: 3,
+            name: "Incidências",
+            description: "Incidentes",
+        }
+    ];
+
+function setupOccurrenceTypeDataTable() {
+    if ($.fn.DataTable.isDataTable('#occurrenceTypeTable')) {
+        $('#occurrenceTypeTable').DataTable().clear().destroy();
+    }
+
+    occurrenceTypeTable = $('#occurrenceTypeTable').DataTable({
+        searching: true,
+        paging: false,
+        info: false,
+        data: occurrenceTypeTableData,
+        columns: [
+            { data: 'id', title: 'ID', visible: false },
+            { data: 'name', title: 'Nome' },
+            { data: 'description', title: 'Descrição' },
+            { title: 'Ações' }
+        ],
+        columnDefs: [
+            {
+                targets: -1, // Última coluna (Ações)
+                render: function (data, type, row, meta) {
+                    var occurrenceTypeId = row.id; 
+                    return `
+                        <button class="btn-action occurrenceType-edit" title="Editar" data-occurrenceType-id="${occurrenceTypeId}" onclick="modalOccurrenceType(${occurrenceTypeId})"><i class="fa fa-pen"></i></button>
+                        <button class="btn-action occurrenceType-delete" title="Deletar" data-occurrenceType-id="${occurrenceTypeId}" onclick="showDeleteModal(${occurrenceTypeId})"><i class="fa fa-trash"></i></button>
+                    `;
+                }
+            }
+        ],
+        lengthChange: false,
+        ordering: true,
+        dom: 'lrtip',
+        scrollX: true,
+        fixedHeader: true,
+        language: {
+            zeroRecords: "Nenhum registro correspondente encontrado",
+            emptyTable: "Nenhum dado disponível na tabela"
+        }
+    });
+
+    adjustTable();
+}
+
+function adjustTable() {
+    setTimeout(function() {
+        occurrenceTypeTable.columns.adjust().draw();
+    }, 100);
+}
+
+    $(document).ready(function() {
+        // Inicialização do DataTables
+        setupOccurrenceTypeDataTable();
+
+        // Filtro de pesquisa personalizado
+        $('#occurrenceTypeSearch').on('keyup', function() {
+            occurrenceTypeTable.search(this.value).draw();
+        });
+    });
+</script>
+{% endblock %}

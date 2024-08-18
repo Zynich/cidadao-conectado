@@ -17,6 +17,15 @@
 .dropdown-menu {
     background-color: #343a40;
 }
+
+.dropdown-menu .dropdown-left {
+    left: -100%;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    right: 100%;
+}
+
 .dropdown-menu .dropdown-item {
     color: #ffffff;
 }
@@ -39,8 +48,23 @@
 }
 
 .dropdown-hover:hover .dropdown-menu {
-    display: block;
     margin-top: 0; 
+}
+
+.dropdown-submenu:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu {
+    display: none; /* Esconde o submenu por padrão */
+}
+
+.dropdown-menu.dropdown-hover:hover {
+    display: block; /* Mostra o submenu ao passar o mouse */
+}
+
+.dropdown-toggle::after {
+    display: none;
 }
 
 /* Footer de usuario e sair */

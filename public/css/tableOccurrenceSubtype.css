@@ -1,0 +1,60 @@
+.tableOccurrenceSubtypeContainer {
+    overflow-x: auto; /* Adiciona scroll horizontal se necessário */
+    margin-bottom: 10px; /* Espaçamento inferior para separar de outros elementos */
+    border: none;
+    border-radius: 5px;
+    overflow-y: auto;
+}
+
+.tableOccurrenceSubtypeContainer table {
+    border-collapse: separate; /* Separa as bordas das células */
+    border-spacing: 0 10px; /* Espaçamento entre as linhas */
+    width: 100%; /* Garante que a tabela ocupe toda a largura do contêiner */
+    border-radius: 5px; /* Bordas arredondadas apenas para a tabela */
+    overflow: hidden; /* Esconda qualquer conteúdo que ultrapasse os limites */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para criar a aparência de flutuação */
+    border: none;
+}
+
+.tableOccurrenceSubtypeContainer th,
+.tableOccurrenceSubtypeContainer td {
+    border: none; /* Remove todas as bordas */
+    padding: 12px 15px; /* Adiciona espaçamento interno */
+    text-align: left !important; /* Alinha o texto à esquerda, com prioridade */
+}
+
+.tableOccurrenceSubtypeContainer th {
+    background: linear-gradient(to bottom, #333, #555); /* Gradiente preto fosco */
+    color: #fff; /* Texto branco */
+    font-weight: bold; /* Texto em negrito */
+    white-space: nowrap; /* Impede a quebra de linha */
+    overflow: hidden; /* Oculta o texto que não cabe */
+    text-overflow: ellipsis; /* Adiciona "..." ao final do texto que não cabe */
+    border-bottom: 2px solid #444; /* Borda inferior do cabeçalho */
+}
+
+.tableOccurrenceSubtypeContainer th:first-child {
+    border-top-left-radius: 5px; /* Apenas o primeiro th: arredonda o canto superior esquerdo */
+    border-bottom-left-radius: 5px; /* Apenas o primeiro th: arredonda o canto inferior esquerdo */
+}
+
+.tableOccurrenceSubtypeContainer th:last-child {
+    border-top-right-radius: 5px; /* Apenas o último th: arredonda o canto superior direito */
+    border-bottom-right-radius: 5px; /* Apenas o último th: arredonda o canto inferior direito */
+}
+
+.tableOccurrenceSubtypeContainer td {
+    background-color: #f9f9f9; /* Fundo claro para as células */
+}
+
+.tableOccurrenceSubtypeContainer tr:nth-child(even) td {
+    background-color: #f0ebebfb; /* Fundo ligeiramente mais escuro para linhas pares */
+}
+
+.tableOccurrenceSubtypeContainer tr:hover td {
+    background-color: #9b9999; /* Fundo mais escuro ao passar o mouse */
+}
+
+.btn-action.occurrenceSubtype-edit i { color: #ffc107; }
+.btn-action.occurrenceSubtype-delete i { color: #000000; }
+
